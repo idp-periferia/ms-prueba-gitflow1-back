@@ -1,0 +1,46 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ms-prueba-gitflow1-back
+  title: prueba-gitflow1 (nodejs)
+  description: 
+  tags:
+    - aws
+    - ci-cd
+    - codepipeline
+    - codebuild
+    - nodejs
+  annotations:
+    aws.amazon.com/codecommit-repository: ms-prueba-gitflow1-back
+    aws.amazon.com/ecr-repository: ms-prueba-gitflow1-back
+    aws.amazon.com/region: us-east-2
+    aws.amazon.com/account-id: 039438367923
+    backstage.io/kubernetes-id: ms-prueba-gitflow1-back
+    backstage.io/kubernetes-namespace: production
+    backstage.io/kubernetes-label-selector: app=ms-prueba-gitflow1-back
+spec:
+  type: service
+  owner: platform-team
+  lifecycle: production
+  system: aws-platform
+  providesApis:
+    - ms-prueba-gitflow1-back-api
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ms-prueba-gitflow1-back-api
+  title: prueba-gitflow1 API
+  description: API OpenAPI del microservicio ms-prueba-gitflow1-back
+  tags:
+    - aws
+    - openapi
+    - nodejs
+spec:
+  type: openapi
+  lifecycle: production
+  owner: platform-team
+  system: aws-platform
+  definition:
+    $text: ./openapi.yaml
